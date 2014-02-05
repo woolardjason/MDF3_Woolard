@@ -23,6 +23,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service android:name="com.example.planit.ServiceClass" >
+        </service>
         <uses-library android:name="com.google.android.maps"/>
     </application>
 	<uses-permission android:name="android.permission.INTERNET"/>

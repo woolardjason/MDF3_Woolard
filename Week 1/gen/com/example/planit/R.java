@@ -21,29 +21,26 @@ public final class R {
         public static final int activity_vertical_margin=0x7f040001;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
+        public static final int bg=0x7f020000;
+        public static final int ic_launcher=0x7f020001;
     }
     public static final class id {
-        public static final int action_settings=0x7f080010;
-        public static final int editText1=0x7f080000;
-        public static final int grabLocationInfoBtn=0x7f080001;
-        public static final int textView1=0x7f080006;
-        public static final int textView10=0x7f08000a;
-        public static final int textView11=0x7f08000d;
-        public static final int textView12=0x7f08000c;
-        public static final int textView13=0x7f08000f;
-        public static final int textView14=0x7f08000e;
-        public static final int textView2=0x7f080003;
-        public static final int textView3=0x7f080002;
-        public static final int textView4=0x7f080005;
-        public static final int textView5=0x7f080004;
-        public static final int textView6=0x7f080008;
-        public static final int textView7=0x7f080007;
-        public static final int textView8=0x7f080009;
-        public static final int textView9=0x7f08000b;
+        public static final int action_settings=0x7f08000a;
+        public static final int addressField=0x7f080001;
+        public static final int addressText=0x7f080000;
+        public static final int feelsLikeInfo=0x7f080006;
+        public static final int feelslike_header=0x7f080009;
+        public static final int grabLocationInfoBtn=0x7f080002;
+        public static final int locationInfo=0x7f080003;
+        public static final int temperatureInfo=0x7f080004;
+        public static final int temperature_header=0x7f080007;
+        public static final int windInfo=0x7f080005;
+        public static final int wind_header=0x7f080008;
     }
     public static final class layout {
         public static final int activity_map=0x7f030000;
+        public static final int list_view=0x7f030001;
+        public static final int list_view_header=0x7f030002;
     }
     public static final class menu {
         public static final int map=0x7f070000;

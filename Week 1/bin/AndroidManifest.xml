@@ -8,7 +8,8 @@
         android:minSdkVersion="8"
         android:targetSdkVersion="19" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-
+    <uses-permission android:name="android.permission.INTERNET"/>
+    
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -23,10 +24,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name="com.example.planit.ServiceClass" >
-        </service>
         <uses-library android:name="com.google.android.maps"/>
+        <service android:name="com.example.planit.WeatherServiceClass"></service>
+        <service android:name="com.example.planit.WeatherServiceClass"></service>
+        
     </application>
-	<uses-permission android:name="android.permission.INTERNET"/>
 	
 </manifest>

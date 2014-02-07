@@ -1,3 +1,12 @@
+/*
+ * Project		Planit
+ * 
+ * Package		com.example.planit
+ * 
+ * @author		Jason Woolard
+ * 
+ * Date			Feb 6, 2014
+ */
 package com.example.planit;
 
 import java.io.BufferedInputStream;
@@ -13,7 +22,6 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.IntentService;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;

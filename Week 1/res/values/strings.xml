@@ -4,5 +4,6 @@
     <string name="app_name">Planit</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="menu_title">Map Location How?</string>
 
 </resources>

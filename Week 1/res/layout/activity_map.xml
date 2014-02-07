@@ -36,6 +36,7 @@
         android:layout_below="@+id/addressField"
         android:text="Find Location"
         android:textSize="12sp" />
+      
 
     <ListView
         android:id="@+id/locationInfo"
@@ -44,5 +45,4 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/grabLocationInfoBtn" >
     </ListView>
-
 </RelativeLayout>

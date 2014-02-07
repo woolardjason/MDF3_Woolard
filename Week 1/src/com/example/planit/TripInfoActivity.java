@@ -1,3 +1,12 @@
+/*
+ * Project		Planit
+ * 
+ * Package		com.example.planit
+ * 
+ * @author		Jason Woolard
+ * 
+ * Date			Feb 6, 2014
+ */
 package com.example.planit;
 
 import java.lang.ref.WeakReference;
@@ -75,7 +84,7 @@ public class TripInfoActivity extends Activity {
 		
         searchField = (EditText) findViewById(R.id.addressField);
 		addressText = (TextView) findViewById(R.id.addressText);
-
+		
 		Button searchButton = (Button) findViewById(R.id.grabLocationInfoBtn);
 		// OnClickListener for the searchButton to be called upon click
 		searchButton.setOnClickListener(new View.OnClickListener() {
@@ -88,6 +97,7 @@ public class TripInfoActivity extends Activity {
 				
 			}
 		});
+		
 	}
 
 	public void initiateGoogleService() {

@@ -25,7 +25,7 @@ public final class R {
         public static final int ic_launcher=0x7f020001;
     }
     public static final class id {
-        public static final int action_settings=0x7f08000a;
+        public static final int action_settings=0x7f08000b;
         public static final int addressField=0x7f080001;
         public static final int addressText=0x7f080000;
         public static final int feelsLikeInfo=0x7f080006;
@@ -34,6 +34,7 @@ public final class R {
         public static final int locationInfo=0x7f080003;
         public static final int temperatureInfo=0x7f080004;
         public static final int temperature_header=0x7f080007;
+        public static final int webView1=0x7f08000a;
         public static final int windInfo=0x7f080005;
         public static final int wind_header=0x7f080008;
     }
@@ -41,6 +42,7 @@ public final class R {
         public static final int activity_map=0x7f030000;
         public static final int list_view=0x7f030001;
         public static final int list_view_header=0x7f030002;
+        public static final int map_details_activity=0x7f030003;
     }
     public static final class menu {
         public static final int map=0x7f070000;
@@ -49,6 +51,7 @@ public final class R {
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
         public static final int hello_world=0x7f050002;
+        public static final int menu_title=0x7f050003;
     }
     public static final class style {
         /** 

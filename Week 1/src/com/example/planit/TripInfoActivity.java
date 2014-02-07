@@ -15,11 +15,14 @@ import java.util.HashMap;
 
 import org.json.JSONArray;
 
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Messenger;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -41,6 +44,8 @@ public class TripInfoActivity extends Activity {
 	static String longitude;
 	static SimpleAdapter adapter;
 	static ListView locationInfoList;
+	static Boolean isConnected = false;
+	static Boolean mConnected = false;
 	static ArrayList<HashMap<String, String>> locationInfo = new ArrayList<HashMap<String, String>>();
 
 	// Defining Service Class Handler extending from Handler 
@@ -81,7 +86,7 @@ public class TripInfoActivity extends Activity {
 		View locationInfoHeader = this.getLayoutInflater().inflate(
 				R.layout.list_view_header, null);
 		locationInfoList.addHeaderView(locationInfoHeader);
-		
+		// Setting Local Constants to views in XML
         searchField = (EditText) findViewById(R.id.addressField);
 		addressText = (TextView) findViewById(R.id.addressText);
 		
@@ -92,14 +97,30 @@ public class TripInfoActivity extends Activity {
 			@Override
 			public void onClick(View view) {
 				locationInfo.clear();
-				initiateGoogleService();
 				Log.i(mTAG, "Button Clicked");
-				
+
+				mConnected = pullConnectionStatus(context);
+				// If user is connected...
+				if (mConnected) 
+				{
+					initiateGoogleService();
+				} 
+				else
+				{
+					AlertDialog.Builder adb = new AlertDialog.Builder(context);
+					// Setting adb properties
+					adb.setTitle(context.getString(R.string.alert_title));
+					adb.setMessage(context.getString(R.string.alert_message));
+					adb.setPositiveButton(android.R.string.ok, null);
+					// Setting alertDialog to create initialized adb with set properties
+					AlertDialog alertDialog = adb.create();
+					// Showing alertDialog to user
+					alertDialog.show();
+				}
 			}
 		});
-		
 	}
-
+	// Method to start service by taking in search field input and passing it to intent
 	public void initiateGoogleService() {
 		final ServiceClassHandler mHandler = new ServiceClassHandler(this);
 		Messenger serviceClassMessenger = new Messenger(mHandler);
@@ -117,5 +138,26 @@ public class TripInfoActivity extends Activity {
 		getMenuInflater().inflate(R.menu.map, menu);
 		return true;
 	}
-
+	public static Boolean pullConnectionStatus(Context context)
+	{
+		isConnected = false;
+		verifyConnectionStatus(context);
+		return isConnected;
+	}
+	// Method used to check user connectivity
+	public static void verifyConnectionStatus(Context context)
+	{
+		ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo networkInfo = cm.getActiveNetworkInfo();
+		
+		if (networkInfo != null)
+		{
+			if (networkInfo.isConnected())
+			{
+				Log.i(mTAG, "Connection Type: " +networkInfo.getTypeName());
+				
+				isConnected = true;
+			}
+		}
+	}
 }

@@ -55,18 +55,13 @@ public class SearchGoogleFragment extends DialogFragment {
             	// Defining the searchField in the XML layout 'search_google_fragment'
                 EditText searchField = (EditText) v.findViewById(R.id.searchField);
                 String inputedString = searchField.getText().toString();
-                // Calling the *** method with passed in text from the EditText
-                if (!(searchField.getText().toString() == null) || !(searchField.getText().toString() == ""))
-                {
-                	listener.searchGoogle("https://www.google.com/?q=" + inputedString + "#q=" + inputedString);
+
+                // Calling the *searchGoogle* method with passed in text from the EditText
+                listener.searchGoogle("https://www.google.com/?q=" + inputedString + "#q=" + inputedString);
                
-                	// Utilizing public method dismiss(); to dismiss the search fragment dialog.
-                	dismiss();
-                }
-                else
-                {
-                	Log.i("mTAG", "Check input for empty field!");
-                }
+                // Utilizing public method dismiss(); to dismiss the search fragment dialog.
+                dismiss();
+
             }
         });
         return v;

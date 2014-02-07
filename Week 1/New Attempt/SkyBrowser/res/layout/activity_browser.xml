@@ -1,0 +1,52 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".BrowserActivity" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="11"
+        android:orientation="horizontal"
+        android:weightSum="20" >
+
+        <Button
+            android:id="@+id/button_back"
+            android:layout_width="match_parent"
+            android:layout_height="40sp"
+            android:layout_weight="9"
+            android:text="&lt;" >
+        </Button>
+
+        <EditText
+            android:id="@+id/userInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2" >
+        </EditText>
+
+        <Button
+            android:id="@+id/button_forward"
+            android:layout_width="match_parent"
+            android:layout_height="40sp"
+            android:layout_weight="9"
+            android:text=">" >
+        </Button>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <WebView
+            android:id="@+id/skyBrowser"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+        </WebView>
+    </LinearLayout>
+
+</LinearLayout>

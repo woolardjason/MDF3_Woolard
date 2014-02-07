@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:minWidth="300dp"
+android:minHeight="150dp"
+    android:orientation="vertical" >
+
+<TextView
+    android:id="@+id/dialogTitle"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Search Google"
+    android:textSize="14sp"
+    android:layout_margin="10sp" 
+    android:textColor="#777"
+        android:layout_gravity="center"
+    
+    android:textStyle="bold" >
+</TextView>
+
+<EditText
+    android:id="@+id/searchField"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8sp" 
+    android:hint="What would you like to search for?"
+    android:layout_gravity="center"
+    android:textSize="12sp" >
+
+    <requestFocus />
+</EditText>
+
+<Button
+    android:id="@+id/searchButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Search Google!"
+        android:layout_gravity="center"
+    
+	android:layout_margin="7dip" 
+    android:textSize="12sp" />
+
+</LinearLayout>

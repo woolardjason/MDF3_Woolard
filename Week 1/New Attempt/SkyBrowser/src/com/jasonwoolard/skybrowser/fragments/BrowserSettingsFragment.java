@@ -1,3 +1,12 @@
+/*
+ * Project		SkyBrowser
+ * 
+ * Package		com.jasonwoolard.skybrowser.fragments
+ * 
+ * @author		Jason Woolard
+ * 
+ * Date			Feb 7, 2014
+ */
 package com.jasonwoolard.skybrowser.fragments;
 
 import android.annotation.SuppressLint;

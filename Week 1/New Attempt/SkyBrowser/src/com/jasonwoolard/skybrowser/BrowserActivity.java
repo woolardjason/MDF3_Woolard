@@ -12,6 +12,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -60,6 +61,16 @@ public class BrowserActivity extends Activity implements OnClickListener, settin
 		// Go To URL Button
 		Button goToUrlButton = (Button) findViewById(R.id.button_goToUrl);
 		goToUrlButton.setOnClickListener(this);
+		// Getting Intent Data passed from external implicit intent 
+		Intent intent = getIntent();
+		Uri website = intent.getData();
+		if (website != null) 
+		{
+		String fURL = website.toString();
+		// Launching website based on data passed in & updating textView
+		skyBrowser.loadUrl(fURL);
+		inputUrl.setText(fURL);
+		}
 	}
 	public void onClick(View v)
 	{

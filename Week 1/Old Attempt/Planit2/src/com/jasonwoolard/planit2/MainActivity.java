@@ -22,13 +22,9 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 			
-				EditText latitude = (EditText) findViewById(R.id.editText1);
-				EditText longitude = (EditText) findViewById(R.id.editText2);
-				String myUri =  "https://maps.google.com/maps?q=" + latitude.getText().toString() + ","+ longitude.getText().toString();
+				EditText inputedText = (EditText) findViewById(R.id.editText1);
+				String myUri =  inputedText.getText().toString();
 				Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(myUri));
-
-				intent.putExtra("longitude", longitude.getText().toString());
-				intent.putExtra("latitude", latitude.getText().toString());
 
 			    String title = (String) getResources().getText(R.string.menu_title);
 		        Intent chooser = Intent.createChooser(intent, title);

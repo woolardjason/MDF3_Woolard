@@ -16,6 +16,10 @@
         android:showAsAction="ifRoom"
         android:title="Search Google"/>
     <item
+        android:id="@+id/share_action"
+        android:showAsAction="never"
+        android:title="@string/share_action"/>
+    <item
         android:id="@+id/browserSettings"
         android:icon="@drawable/ic_action_settings"
         android:showAsAction="ifRoom"

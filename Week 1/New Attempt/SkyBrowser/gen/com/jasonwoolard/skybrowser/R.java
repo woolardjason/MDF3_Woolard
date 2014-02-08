@@ -28,18 +28,20 @@ public final class R {
         public static final int ic_launcher=0x7f020004;
     }
     public static final class id {
-        public static final int browserCancel=0x7f08000a;
-        public static final int browserRefresh=0x7f08000b;
-        public static final int browserSettings=0x7f08000d;
+        public static final int browserCancel=0x7f08000b;
+        public static final int browserRefresh=0x7f08000c;
+        public static final int browserSettings=0x7f08000f;
         public static final int button_back=0x7f080000;
         public static final int button_forward=0x7f080002;
         public static final int button_goToUrl=0x7f080003;
+        public static final int clearHistoryBtn=0x7f080008;
         public static final int dialogTitle=0x7f080005;
         public static final int javaScript=0x7f080006;
         public static final int javaScriptSwitch=0x7f080007;
-        public static final int searchButton=0x7f080009;
-        public static final int searchDialog=0x7f08000c;
-        public static final int searchField=0x7f080008;
+        public static final int searchButton=0x7f08000a;
+        public static final int searchDialog=0x7f08000d;
+        public static final int searchField=0x7f080009;
+        public static final int share_action=0x7f08000e;
         public static final int skyBrowser=0x7f080004;
         public static final int userInput=0x7f080001;
     }
@@ -54,7 +56,15 @@ public final class R {
     public static final class string {
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
+        public static final int empty_field_error_message=0x7f050007;
+        public static final int error_title=0x7f050003;
         public static final int hello_world=0x7f050002;
+        public static final int history_success_message=0x7f050006;
+        public static final int network_error_message=0x7f050004;
+        public static final int share_action=0x7f050008;
+        public static final int share_message=0x7f050009;
+        public static final int share_title=0x7f05000a;
+        public static final int success_title=0x7f050005;
     }
     public static final class style {
         /** 

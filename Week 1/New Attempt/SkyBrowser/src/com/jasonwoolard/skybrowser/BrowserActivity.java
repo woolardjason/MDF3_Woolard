@@ -2,13 +2,16 @@ package com.jasonwoolard.skybrowser;
 
 
 import com.jasonwoolard.skybrowser.fragments.BrowserSettingsFragment;
-import com.jasonwoolard.skybrowser.fragments.BrowserSettingsFragment.searchListener;
+import com.jasonwoolard.skybrowser.fragments.BrowserSettingsFragment.settingsListener;
 import com.jasonwoolard.skybrowser.fragments.SearchGoogleFragment;
+import com.jasonwoolard.skybrowser.fragments.SearchGoogleFragment.searchListener;
 import com.jasonwoolard.skybrowser.network.NetworkConnectivity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -21,7 +24,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class BrowserActivity extends Activity implements OnClickListener, searchListener {
+public class BrowserActivity extends Activity implements OnClickListener, settingsListener, searchListener {
 	WebView skyBrowser;
 	EditText inputUrl;
 	Context context;
@@ -76,10 +79,21 @@ public class BrowserActivity extends Activity implements OnClickListener, search
 			break;
 		case R.id.button_goToUrl:
 			String url = inputUrl.getText().toString();
-			skyBrowser.loadUrl(url);
+			if (url != null || url != "")
+			{
+				// If user types in http://, remove it to prevent from it being put in twice
+				String newUrl = url.replace("http://", "");
+				// Construct a new url with what the user typed, and adding in the http:// to ensure it's their once
+				String finalUrl = "http://" + newUrl;
+				// Loading the finalUrl
+				skyBrowser.loadUrl(finalUrl);
+				// Updating the textField
+				inputUrl.setText(finalUrl);
+			}
 			break;
 		}
 	}
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) 
@@ -91,13 +105,21 @@ public class BrowserActivity extends Activity implements OnClickListener, search
 			skyBrowser.reload();
 			break;
 		case R.id.browserSettings:
-			// TODO: DialogFragment to be implemented here
 			showSettingsDialog();
 			break;
 		case R.id.searchDialog:
-			// TODO: DialogFragment to be implemented here
-			//https://www.google.com/?q=SearchHere#q=SearchHere
 			showDialog();
+			break;
+		case R.id.share_action:
+			// Grabbing title of webpage and url as well as default message to share
+			String fUrl = getString(R.string.share_message) + skyBrowser.getTitle().toString() + " - " + skyBrowser.getUrl().toString();
+			// Declaring a new intent (Share intent)
+			Intent intent = new Intent(Intent.ACTION_SEND);
+			intent.setType("text/plain");
+			// Adding extras to intent to properly share text
+			intent.putExtra(Intent.EXTRA_TEXT, fUrl);
+			// Utilizing createChooser for flexibility
+			startActivity(Intent.createChooser(intent, getString(R.string.share_title)));
 			break;
 		}
 		return super.onOptionsItemSelected(item);
@@ -113,15 +135,38 @@ public class BrowserActivity extends Activity implements OnClickListener, search
 
 		userConnected = NetworkConnectivity.pullConnectionStatus(context);
 		// If user is connected, perform service call
-		if (userConnected) {
-
-			
+		if (userConnected) 
+		{		
 			if (inputedString != null && !inputedString.equals("")) 
 			{
 				skyBrowser.loadUrl(inputedString);		
 				inputUrl.setText(inputedString);
 			}
-			
+			else
+			{
+				  AlertDialog.Builder adb = new AlertDialog.Builder(context);
+	        		// Setting adb properties
+	        		adb.setTitle(context.getString(R.string.error_title));
+	        		adb.setMessage(context.getString(R.string.empty_field_error_message));
+	        		adb.setPositiveButton(android.R.string.ok, null);
+	        		// Setting alertDialog to create initialized adb with set properties
+	        		AlertDialog alertDialog = adb.create();
+	        		// Showing alertDialog to user
+	        		alertDialog.show();
+			}
+		} 
+		else 
+		{
+
+			AlertDialog.Builder adb = new AlertDialog.Builder(context);
+      		// Setting adb properties
+      		adb.setTitle(context.getString(R.string.error_title));
+      		adb.setMessage(context.getString(R.string.network_error_message));
+      		adb.setPositiveButton(android.R.string.ok, null);
+      		// Setting alertDialog to create initialized adb with set properties
+      		AlertDialog alertDialog = adb.create();
+      		// Showing alertDialog to user
+      		alertDialog.show();
 		}
 	}
 	@SuppressLint("NewApi")
@@ -146,11 +191,18 @@ public class BrowserActivity extends Activity implements OnClickListener, search
 		{
 			 skyBrowser.getSettings().setJavaScriptEnabled(false);
 		}
+		// Refreshing browser to account for javascript change
+		 skyBrowser.reload();
 	}
 	@Override
 	public Boolean checkJavaScriptStatus()
 	{
 		Boolean javaScriptEnabled = skyBrowser.getSettings().getJavaScriptEnabled();
 		return javaScriptEnabled;
+	}
+	@Override
+	// Method used to clear the users browser history
+	public void clearBrowserHistory() {
+		skyBrowser.clearHistory();		
 	}
 }

@@ -1,8 +1,9 @@
 package com.jasonwoolard.skybrowser;
 
 
+import com.jasonwoolard.skybrowser.fragments.BrowserSettingsFragment;
+import com.jasonwoolard.skybrowser.fragments.BrowserSettingsFragment.searchListener;
 import com.jasonwoolard.skybrowser.fragments.SearchGoogleFragment;
-import com.jasonwoolard.skybrowser.fragments.SearchGoogleFragment.searchListener;
 import com.jasonwoolard.skybrowser.network.NetworkConnectivity;
 
 import android.annotation.SuppressLint;
@@ -91,7 +92,7 @@ public class BrowserActivity extends Activity implements OnClickListener, search
 			break;
 		case R.id.browserSettings:
 			// TODO: DialogFragment to be implemented here
-
+			showSettingsDialog();
 			break;
 		case R.id.searchDialog:
 			// TODO: DialogFragment to be implemented here
@@ -128,5 +129,28 @@ public class BrowserActivity extends Activity implements OnClickListener, search
 	    // Create the fragment and show it as a dialog.
 	    SearchGoogleFragment newFragment = SearchGoogleFragment.newInstance();
 	    newFragment.show(getFragmentManager(), "dialog");
+	}
+	public void showSettingsDialog() {
+	    // Create the fragment and show it as a dialog.
+	    BrowserSettingsFragment newFragment = BrowserSettingsFragment.newInstance();
+	    newFragment.show(getFragmentManager(), "dialog");
+	}
+	@SuppressLint("SetJavaScriptEnabled")
+	@Override
+	public void toggleJavaScript(Boolean isEnabled) {
+		if (isEnabled)
+		{
+			 skyBrowser.getSettings().setJavaScriptEnabled(true);
+		}
+		else if (isEnabled == false)
+		{
+			 skyBrowser.getSettings().setJavaScriptEnabled(false);
+		}
+	}
+	@Override
+	public Boolean checkJavaScriptStatus()
+	{
+		Boolean javaScriptEnabled = skyBrowser.getSettings().getJavaScriptEnabled();
+		return javaScriptEnabled;
 	}
 }

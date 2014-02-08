@@ -28,22 +28,25 @@ public final class R {
         public static final int ic_launcher=0x7f020004;
     }
     public static final class id {
-        public static final int browserCancel=0x7f080008;
-        public static final int browserRefresh=0x7f080009;
-        public static final int browserSettings=0x7f08000b;
+        public static final int browserCancel=0x7f08000a;
+        public static final int browserRefresh=0x7f08000b;
+        public static final int browserSettings=0x7f08000d;
         public static final int button_back=0x7f080000;
         public static final int button_forward=0x7f080002;
         public static final int button_goToUrl=0x7f080003;
         public static final int dialogTitle=0x7f080005;
-        public static final int searchButton=0x7f080007;
-        public static final int searchDialog=0x7f08000a;
-        public static final int searchField=0x7f080006;
+        public static final int javaScript=0x7f080006;
+        public static final int javaScriptSwitch=0x7f080007;
+        public static final int searchButton=0x7f080009;
+        public static final int searchDialog=0x7f08000c;
+        public static final int searchField=0x7f080008;
         public static final int skyBrowser=0x7f080004;
         public static final int userInput=0x7f080001;
     }
     public static final class layout {
         public static final int activity_browser=0x7f030000;
-        public static final int search_google_fragment=0x7f030001;
+        public static final int browser_settings_fragment=0x7f030001;
+        public static final int search_google_fragment=0x7f030002;
     }
     public static final class menu {
         public static final int browser=0x7f070000;

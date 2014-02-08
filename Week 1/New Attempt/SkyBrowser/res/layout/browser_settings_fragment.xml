@@ -12,30 +12,27 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="10sp"
-        android:text="Search Google"
+        android:text="Browser Settings"
         android:textColor="#777"
         android:textSize="14sp"
         android:textStyle="bold" >
     </TextView>
-
-    <EditText
-        android:id="@+id/searchField"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="8sp"
-        android:hint="What would you like to search for?"
-        android:textSize="12sp" >
-
-    </EditText>
-
-    <Button
-        android:id="@+id/searchButton"
+    <TextView
+        android:id="@+id/javaScript"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="7dip"
-        android:text="Search Google!"
-        android:textSize="12sp" />
+        android:layout_margin="10sp"
+        android:text="JavaScript"
+        android:textColor="#777"
+        android:textSize="12sp"
+        android:textStyle="bold" >
+    </TextView>
+	<Switch
+     	android:id="@+id/javaScriptSwitch"
+     	android:layout_width="wrap_content"
+     	android:layout_height="wrap_content"
+    	android:textOff="Disable"
+    	android:checked="true"
+     	android:textOn="Enable"/>
 
 </LinearLayout>

@@ -3,6 +3,6 @@
 
     <string name="app_name">GeoMeet</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="default_status_text">Obtaining connection status...</string>
 
 </resources>

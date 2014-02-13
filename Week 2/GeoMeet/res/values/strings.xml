@@ -11,5 +11,7 @@
     <string name="user_inputed_image">User Inputed Image</string>
     <string name="enter_meet_up_details">Enter Meet Up Details</string>
     <string name="share_meet_">Share Meet!</string>
-
+    <string name="dialog_title">We apologize!</string>
+    <string name="dialog_msg">It appears you have forgot to snap a photo to share!</string>
+    
 </resources>

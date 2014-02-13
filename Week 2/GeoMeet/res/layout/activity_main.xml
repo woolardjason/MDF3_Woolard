@@ -1,12 +1,10 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity"
+    android:background="#cdd9e0"
+    android:orientation="vertical"
+    android:weightSum="7"
     tools:ignore="SmallSp" >
 
     <TextView
@@ -14,82 +12,97 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:background="#525252"
         android:text="@string/default_status_text"
+        android:textColor="#FFFFFF"
         android:textSize="12sp" />
 
-    <ImageView
-        android:id="@+id/userInputedImage"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/textView1"
-        android:layout_marginLeft="14dp"
-        android:layout_marginTop="24dp"
-        android:contentDescription="@string/user_inputed_image"
-         />
-
-    <Button
-        android:id="@+id/snapPhotoBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/userInputedImage"
-        android:layout_alignRight="@+id/userInputedImage"
-        android:layout_below="@+id/userInputedImage"
-        android:layout_marginTop="10dp"
-        android:text="@string/snap_photo"
-        android:textSize="10sp" />
-
-    <TextView
-        android:id="@+id/orTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/addressField"
-        android:layout_centerHorizontal="true"
-        android:text="@string/or" />
-
-    <Button
-        android:id="@+id/currentLocationBtn"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/orTxt"
-        android:textSize = "10sp"
-        android:layout_centerHorizontal="true"
-        android:text="@string/use_current_location" />
-
-    <EditText
-        android:id="@+id/meetUpDescription"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_below="@+id/currentLocationBtn"
-        android:layout_centerHorizontal="true"
-        android:ems="10"
-        android:hint="@string/enter_meet_up_details"
-        android:inputType="textMultiLine"
-        android:textSize="12sp" />
-
-    <EditText
-        android:id="@+id/addressField"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/meetUpDescription"
-        android:layout_below="@+id/snapPhotoBtn"
-        android:layout_marginTop="49dp"
-        android:ems="10"
-        android:hint="@string/enter_address"
-        android:textSize="12sp" >
+        android:background="#a4adb3"
+        android:layout_weight="0.10"
+        android:orientation="vertical" >
 
-        <requestFocus />
-    </EditText>
+        <ImageView
+            android:id="@+id/userInputedImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/user_inputed_image" />
 
-    <Button
-        android:id="@+id/shareMeetUpBtn"
-        android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/snapPhotoBtn"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:text="@string/snap_photo"
+            android:textSize="10sp" />
+
+
+    </LinearLayout>
+
+        <EditText
+            android:id="@+id/meetUpDescription"
+            android:layout_width="match_parent"
+            android:paddingTop="40sp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/enter_meet_up_details"
+            android:inputType="textMultiLine"
+            android:textSize="12sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/meetUpDescription"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="14dp"
-		android:textSize="13sp"
-        android:text="@string/share_meet_" />
+        android:orientation="horizontal" >
 
-</RelativeLayout>
+        <EditText
+            android:id="@+id/addressField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/enter_address"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/orTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/or" />
+
+        <Button
+            android:id="@+id/currentLocationBtn"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/use_current_location"
+            android:textSize="10sp" />
+    </LinearLayout>
+         <ProgressBar
+            android:id="@+id/progressBar1"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:paddingBottom="3sp"
+            android:layout_height="wrap_content" />
+	<LinearLayout
+	    android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1.5"
+        android:background="#a4adb3"
+        android:orientation="vertical"
+	    >
+
+        <Button
+            android:id="@+id/shareMeetUpBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/share_meet_"
+            android:textSize="13sp" />
+
+
+    </LinearLayout>
+
+</LinearLayout>

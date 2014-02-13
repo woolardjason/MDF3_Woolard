@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 public class MainActivity extends Activity implements OnClickListener{
@@ -16,6 +17,12 @@ public class MainActivity extends Activity implements OnClickListener{
 	final static int mData = 0;
 	Bitmap bitmap;
 	ImageView inputtedImage;
+	EditText addressTxtField;
+	EditText meetUpInfoTxtField;
+	Button shareMeetUp;
+	Button snapPhoto;
+	Button grabUserLocation;
+	
 	String mTAG = "MainActivity Class - ";
 	
 	@Override
@@ -27,8 +34,14 @@ public class MainActivity extends Activity implements OnClickListener{
 
 	private void initializeUIElements() {
 		inputtedImage = (ImageView) findViewById (R.id.userInputedImage);
-		Button snapPhoto = (Button) findViewById (R.id.snapPhotoBtn);
+		snapPhoto = (Button) findViewById (R.id.snapPhotoBtn);
 		snapPhoto.setOnClickListener(this);
+		grabUserLocation = (Button) findViewById (R.id.currentLocationBtn);
+		grabUserLocation.setOnClickListener(this);
+		addressTxtField = (EditText) findViewById (R.id.addressField);
+		meetUpInfoTxtField = (EditText) findViewById (R.id.meetUpDescription);
+		shareMeetUp = (Button) findViewById (R.id.shareMeetUpBtn);
+		
 	}
 
 	@Override
@@ -47,6 +60,10 @@ public class MainActivity extends Activity implements OnClickListener{
 			Log.i(mTAG, "Snap Photo Button Fired!");
 			Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
 			startActivityForResult(intent, mData);
+			break;
+		case R.id.currentLocationBtn:
+			break;
+		case R.id.shareMeetUpBtn:
 			break;
 		}
 	}

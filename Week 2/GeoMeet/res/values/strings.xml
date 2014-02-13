@@ -4,5 +4,12 @@
     <string name="app_name">GeoMeet</string>
     <string name="action_settings">Settings</string>
     <string name="default_status_text">Obtaining connection status...</string>
+    <string name="snap_photo">Snap Photo</string>
+    <string name="enter_address">Enter Address</string>
+    <string name="or">OR</string>
+    <string name="use_current_location">Use Current Location</string>
+    <string name="user_inputed_image">User Inputed Image</string>
+    <string name="enter_meet_up_details">Enter Meet Up Details</string>
+    <string name="share_meet_">Share Meet!</string>
 
 </resources>

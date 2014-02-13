@@ -6,7 +6,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity" >
+    tools:context=".MainActivity"
+    tools:ignore="SmallSp" >
 
     <TextView
         android:id="@+id/textView1"
@@ -19,20 +20,76 @@
     <ImageView
         android:id="@+id/userInputedImage"
         android:layout_width="250dp"
-        android:layout_height="250dp"
+        android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView1"
         android:layout_below="@+id/textView1"
         android:layout_marginLeft="14dp"
-        android:layout_marginTop="24dp" />
+        android:layout_marginTop="24dp"
+        android:contentDescription="@string/user_inputed_image"
+         />
 
     <Button
         android:id="@+id/snapPhotoBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
+        android:layout_alignLeft="@+id/userInputedImage"
         android:layout_alignRight="@+id/userInputedImage"
         android:layout_below="@+id/userInputedImage"
-        android:layout_marginTop="24dp"
-        android:text="Snap Photo" />
+        android:layout_marginTop="10dp"
+        android:text="@string/snap_photo"
+        android:textSize="10sp" />
+
+    <TextView
+        android:id="@+id/orTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addressField"
+        android:layout_centerHorizontal="true"
+        android:text="@string/or" />
+
+    <Button
+        android:id="@+id/currentLocationBtn"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/orTxt"
+        android:textSize = "10sp"
+        android:layout_centerHorizontal="true"
+        android:text="@string/use_current_location" />
+
+    <EditText
+        android:id="@+id/meetUpDescription"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_below="@+id/currentLocationBtn"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:hint="@string/enter_meet_up_details"
+        android:inputType="textMultiLine"
+        android:textSize="12sp" />
+
+    <EditText
+        android:id="@+id/addressField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/meetUpDescription"
+        android:layout_below="@+id/snapPhotoBtn"
+        android:layout_marginTop="49dp"
+        android:ems="10"
+        android:hint="@string/enter_address"
+        android:textSize="12sp" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/shareMeetUpBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/meetUpDescription"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
+		android:textSize="13sp"
+        android:text="@string/share_meet_" />
 
 </RelativeLayout>

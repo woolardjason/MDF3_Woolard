@@ -12,6 +12,7 @@ import android.app.AlertDialog;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.location.Address;
 import android.location.Criteria;
@@ -20,6 +21,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
+import android.os.BatteryManager;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -33,6 +35,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 @SuppressLint("NewApi")
@@ -48,7 +51,8 @@ public class MainActivity extends Activity implements OnClickListener, LocationL
 	Button grabUserLocation;
 	LocationManager locationManager;
 	Context context;
-
+	TextView batteryStatusInfo;
+	
 	public Uri inputedImageUri;
 	Uri sImage;
 
@@ -116,6 +120,7 @@ public class MainActivity extends Activity implements OnClickListener, LocationL
 		shareMeetUp.setOnClickListener(this);
 		progressBar = (ProgressBar) findViewById(R.id.progressBar1);
 		progressBar.setVisibility(View.INVISIBLE);
+		batteryStatusInfo = (TextView) findViewById(R.id.textView1);
 
 	}
 
@@ -133,6 +138,7 @@ public class MainActivity extends Activity implements OnClickListener, LocationL
 		{
 		case R.id.snapPhotoBtn:
 			Log.i(mTAG, "Snap Photo Button Fired!");
+			inputtedImage.setVisibility(View.VISIBLE);
 			Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
 			File photoTaken = new File(Environment.getExternalStorageDirectory(), "photo.jpg");
 			intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoTaken));
@@ -151,12 +157,27 @@ public class MainActivity extends Activity implements OnClickListener, LocationL
 		case R.id.shareMeetUpBtn: 
 			String addy = addressTxtField.getText().toString();
 			String desc  = meetUpInfoTxtField.getText().toString();
+			if (addy.trim().equals("") || desc.trim().equals("")) 
+			{
+				AlertDialog.Builder adb = new AlertDialog.Builder(context);
+				// Setting adb properties
+				adb.setTitle(context.getString(R.string.dialog_title_two));
+				adb.setMessage(context.getString(R.string.dialog_msg_two));
+				adb.setPositiveButton(android.R.string.ok, null);
+				// Setting alertDialog to create initialized adb with set properties
+				AlertDialog alertDialog = adb.create();
+				// Showing alertDialog to user
+				alertDialog.show();
+			
+			}
+			else
+			{
 			if (sImage != null)
 			{
 				Uri photoUri = Uri.parse(sImage.toString());
 				Intent shareIntent = new Intent(Intent.ACTION_SEND);
 				shareIntent.setData(photoUri);
-				shareIntent.putExtra(android.content.Intent.EXTRA_TEXT, desc + "@" + addy + "\n\n" + "Posted via GeoMeet!");
+				shareIntent.putExtra(android.content.Intent.EXTRA_TEXT, desc + " @ " + addy + "\n\n" + "Posted via GeoMeet!");
 				shareIntent.setType("image/png");
 				shareIntent.putExtra(Intent.EXTRA_STREAM, photoUri);
 				startActivity(Intent.createChooser(shareIntent, "Share via..."));
@@ -173,10 +194,25 @@ public class MainActivity extends Activity implements OnClickListener, LocationL
 				// Showing alertDialog to user
 				alertDialog.show();
 			}
+			}
 
 
 
 			break;
+		}
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		IntentFilter intentFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+		Intent batteryIntent = this.registerReceiver(null, intentFilter);
+		int batteryLevel = batteryIntent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
+		int batteryScale = batteryIntent.getIntExtra(BatteryManager.EXTRA_SCALE, 0);
+		if ((batteryLevel > 0) && (batteryScale > 0))
+		{
+			int batteryPercentage = (batteryLevel * 100) / batteryScale;
+			batteryStatusInfo.setText(String.valueOf(batteryPercentage));
 		}
 	}
 

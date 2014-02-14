@@ -11,8 +11,8 @@
         android:id="@+id/textView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:background="#525252"
+        android:gravity="center"
         android:text="@string/default_status_text"
         android:textColor="#FFFFFF"
         android:textSize="12sp" />
@@ -20,60 +20,62 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        
         android:layout_weight="0.10"
         android:orientation="vertical" >
-	    <TextView
-        android:id="@+id/step1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:background="#a4adb3"
-        android:text="Step 1: Take Appealing Photo!"
-        android:textColor="#FFF"
-        android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/step1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#a4adb3"
+            android:gravity="center"
+            android:text="@string/step_1"
+            android:textColor="#FFF"
+            android:textSize="14sp" />
+
         <ImageView
             android:id="@+id/userInputedImage"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:visibility="gone"
             android:layout_gravity="center"
-            android:contentDescription="@string/user_inputed_image" />
+            android:contentDescription="@string/user_inputed_image"
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/snapPhotoBtn"
             android:layout_width="wrap_content"
+            android:layout_height="30sp"
             android:layout_gravity="center"
-            android:layout_height="wrap_content"
+            android:background="@drawable/gradient"
             android:text="@string/snap_photo"
             android:textSize="10sp" />
-
-
     </LinearLayout>
- <TextView
+
+    <TextView
         android:id="@+id/step2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:background="#a4adb3"
-        android:text="Step 2: Set Meet Details"
+        android:gravity="center"
+        android:text="@string/step_2"
         android:textColor="#FFF"
         android:textSize="14sp" />
-        <EditText
-            android:id="@+id/meetUpDescription"
-            android:layout_width="match_parent"
-            android:paddingTop="40sp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/enter_meet_up_details"
-            android:inputType="textMultiLine"
-            android:textSize="12sp" />
+
+    <EditText
+        android:id="@+id/meetUpDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/enter_meet_up_details"
+        android:inputType="textMultiLine"
+        android:paddingTop="40sp"
+        android:textSize="12sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
-	 
+
         <EditText
             android:id="@+id/addressField"
             android:layout_width="wrap_content"
@@ -84,7 +86,7 @@
 
         <TextView
             android:id="@+id/orTxt"
-            android:layout_width="wrap_content"
+            android:layout_width="40sp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/or" />
@@ -93,40 +95,43 @@
             android:id="@+id/currentLocationBtn"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="28dp"
+            android:background="@drawable/gradient"
             android:gravity="center"
             android:text="@string/use_current_location"
             android:textSize="10sp" />
     </LinearLayout>
-         <ProgressBar
-            android:id="@+id/progressBar1"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:paddingBottom="3sp"
-            android:layout_height="wrap_content" />
-	<LinearLayout
-	    android:layout_width="match_parent"
+
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingBottom="3sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="0dip"
         android:layout_weight="3"
-        android:orientation="vertical"
-	    >
-	  <TextView
-        android:id="@+id/step3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:background="#a4adb3"
-        android:text="Step 3: Share w/ Friends!"
-        android:textColor="#FFF"
-        android:textSize="14sp" />
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/step3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#a4adb3"
+            android:gravity="center"
+            android:text="@string/step_3"
+            android:textColor="#FFF"
+            android:textSize="14sp" />
 
         <Button
             android:id="@+id/shareMeetUpBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/gradient"
             android:text="@string/share_meet_"
             android:textSize="13sp" />
-
     </LinearLayout>
 
 </LinearLayout>

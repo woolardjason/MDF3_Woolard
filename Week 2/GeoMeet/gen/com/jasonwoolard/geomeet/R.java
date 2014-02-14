@@ -21,7 +21,8 @@ public final class R {
         public static final int activity_vertical_margin=0x7f040001;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
+        public static final int gradient=0x7f020000;
+        public static final int ic_launcher=0x7f020001;
     }
     public static final class id {
         public static final int action_settings=0x7f08000c;
@@ -57,6 +58,9 @@ public final class R {
         public static final int or=0x7f050005;
         public static final int share_meet_=0x7f050009;
         public static final int snap_photo=0x7f050003;
+        public static final int step_1=0x7f05000f;
+        public static final int step_2=0x7f050010;
+        public static final int step_3=0x7f05000e;
         public static final int use_current_location=0x7f050006;
         public static final int user_inputed_image=0x7f050007;
     }

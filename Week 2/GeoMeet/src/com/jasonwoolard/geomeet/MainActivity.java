@@ -315,7 +315,7 @@ public class MainActivity extends Activity implements OnClickListener, LocationL
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-	    locationManager.removeUpdates(this);
+	   // locationManager.removeUpdates(this);
 	}
 
 	@Override

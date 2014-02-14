@@ -15,5 +15,8 @@
     <string name="dialog_msg">It appears you have forgot to snap a photo to share!</string>
     <string name="dialog_title_two">We apologize!</string>
     <string name="dialog_msg_two">It appears you have forgot to enter in an address or meeting description to share!</string>
+    <string name="step_3">Step 3: Share w/ Friends!</string>
+    <string name="step_1">Step 1: Take Appealing Photo!</string>
+    <string name="step_2">Step 2: Set Meet Details</string>
     
 </resources>

@@ -1,3 +1,12 @@
+/*
+ * Project		GeoMeet
+ * 
+ * Package		com.jasonwoolard.geomeet
+ * 
+ * @author		Jason Woolard
+ * 
+ * Date			Feb 13, 2014
+ */
 package com.jasonwoolard.geomeet;
 
 import java.io.BufferedInputStream;

@@ -1,3 +1,12 @@
+/*
+ * Project		GeoMeet
+ * 
+ * Package		com.jasonwoolard.geomeet
+ * 
+ * @author		Jason Woolard
+ * 
+ * Date			Feb 13, 2014
+ */
 package com.jasonwoolard.geomeet;
 
 import java.io.File;
@@ -205,17 +214,33 @@ public class MainActivity extends Activity implements OnClickListener, LocationL
 	@Override
 	protected void onResume() {
 		super.onResume();
+		// Creating 'Sticky' IntentFilter 
 		IntentFilter intentFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+		// Registering reciever for intentfilter
 		Intent batteryIntent = this.registerReceiver(null, intentFilter);
+		// Grabbing info from Battery Manager
 		int batteryLevel = batteryIntent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
 		int batteryScale = batteryIntent.getIntExtra(BatteryManager.EXTRA_SCALE, 0);
+		// Conditional to check batteryPercentage based off simple calculation
 		if ((batteryLevel > 0) && (batteryScale > 0))
 		{
 			int batteryPercentage = (batteryLevel * 100) / batteryScale;
-			batteryStatusInfo.setText(String.valueOf(batteryPercentage));
+			// Checking if the battery life is above 35 percent, if so alert user app is okay for use, otherwise alert them that it's not recommended.
+			if (batteryPercentage > 35)
+			{
+				batteryStatusInfo.setText("Your battery level is looking healthy @ " + String.valueOf(batteryPercentage) + "% charged. App is OK for use!");
+			}
+			else
+			{
+				batteryStatusInfo.setText("Due to your battery level being: " + String.valueOf(batteryPercentage) + "we do not recommend using this app until you've charged!");
+			}
+		}
+		else
+		{
+			batteryStatusInfo.setText("Sorry no battery information has been found on your device.");
 		}
 	}
-
+	// Method is utilized to pass in the lat and lng of the users location, to execute the custom service to geocode their coordinates to an address
 	public void initializeService(double lat, double lng) {
 		final ServiceClassHandler mHandler = new ServiceClassHandler(this);
 		Messenger serviceClassMessenger = new Messenger(mHandler);
@@ -290,7 +315,7 @@ public class MainActivity extends Activity implements OnClickListener, LocationL
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-
+	    locationManager.removeUpdates(this);
 	}
 
 	@Override

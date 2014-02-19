@@ -9,8 +9,101 @@
     tools:context=".MainActivity" >
 
     <TextView
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="Every 45 minutes, someone in the United States is killed from an alcohol-related automobile accident. Don&apos;t be the next casualty."
+        android:textSize="10sp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="15dp"
+        android:textSize="14sp"
+        android:text="Drinks:" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="22dp"
+        android:textSize="12sp"
+        android:text="Beers (12oz.)" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="30sp"
+        android:layout_height="30sp"
+        android:layout_alignBottom="@+id/textView3"
+        android:layout_alignRight="@+id/textView1"
+        android:ems="10"
+        android:textSize="12sp" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="30sp"
+        android:layout_height="30sp"
+        android:layout_alignBottom="@+id/textView4"
+        android:layout_alignRight="@+id/editText1"
+        android:ems="10" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_below="@+id/editText1"
+        android:layout_marginTop="16dp"
+                android:textSize="12sp"
+        
+        android:text="Wine (glasses)" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView4"
+        android:layout_below="@+id/editText2"
+        android:layout_marginTop="21dp"
+                android:textSize="12sp"
+        
+        android:text="Shots (Standard = 40% Alch)" />
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="30sp"
+        android:layout_height="30sp"
+        android:layout_alignBottom="@+id/textView5"
+        android:layout_alignRight="@+id/editText2"
+        android:ems="10" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editText3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="29dp"
+        android:text="Calculate BAC*" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
+        android:text="For your convienence, use the settings tab above to enter your info which will auto-save for you!" />
 
 </RelativeLayout>

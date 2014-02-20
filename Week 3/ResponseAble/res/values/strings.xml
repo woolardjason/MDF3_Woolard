@@ -4,5 +4,7 @@
     <string name="app_name">ResponseAble</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-
+    <string name="error_weight_title">Whoops!</string>
+    <string name="error_weight_msg">It appears you have forgot to enter your weight in the Settings tab, click the Icon above in the Action bar!</string>
+    
 </resources>

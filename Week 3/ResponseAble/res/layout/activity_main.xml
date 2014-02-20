@@ -25,8 +25,8 @@
         android:layout_alignLeft="@+id/textView1"
         android:layout_below="@+id/textView1"
         android:layout_marginTop="15dp"
-        android:textSize="14sp"
-        android:text="Drinks:" />
+        android:text="Drinks:"
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/textView3"
@@ -35,8 +35,8 @@
         android:layout_alignLeft="@+id/textView2"
         android:layout_below="@+id/textView2"
         android:layout_marginTop="22dp"
-        android:textSize="12sp"
-        android:text="Beers (12oz.)" />
+        android:text="Beers (12oz.)"
+        android:textSize="12sp" />
 
     <EditText
         android:id="@+id/fieldBeers"
@@ -56,8 +56,8 @@
         android:layout_height="30sp"
         android:layout_alignBottom="@+id/textView4"
         android:layout_alignRight="@+id/fieldBeers"
-        android:textSize="12sp"
-        android:ems="10" />
+        android:ems="10"
+        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/textView4"
@@ -66,9 +66,8 @@
         android:layout_alignLeft="@+id/textView3"
         android:layout_below="@+id/fieldBeers"
         android:layout_marginTop="16dp"
-                android:textSize="12sp"
-        
-        android:text="Wine (glasses)" />
+        android:text="Wine (glasses)"
+        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/textView5"
@@ -77,18 +76,17 @@
         android:layout_alignLeft="@+id/textView4"
         android:layout_below="@+id/fieldWineGlasses"
         android:layout_marginTop="21dp"
-                android:textSize="12sp"
-        
-        android:text="Shots (Standard = 40% Alch)" />
+        android:text="Shots (Standard = 40% Alch)"
+        android:textSize="12sp" />
 
     <EditText
         android:id="@+id/fieldShots"
         android:layout_width="30sp"
         android:layout_height="30sp"
         android:layout_alignBottom="@+id/textView5"
-        android:textSize="12sp"
         android:layout_alignRight="@+id/fieldWineGlasses"
-        android:ems="10" />
+        android:ems="10"
+        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/textView6"
@@ -115,17 +113,16 @@
         android:layout_alignLeft="@+id/textView5"
         android:layout_below="@+id/textView5"
         android:layout_marginTop="22dp"
-                android:textSize="12sp"
-        
-        android:text="Time since first drink: (in hours)" />
+        android:text="Time since first drink: (in hours)"
+        android:textSize="12sp" />
 
     <EditText
         android:id="@+id/fieldHours"
         android:layout_width="30sp"
         android:layout_height="30sp"
-        android:textSize="12sp"
         android:layout_above="@+id/button1"
         android:layout_alignRight="@+id/fieldShots"
-        android:ems="10" />
+        android:ems="10"
+        android:textSize="12sp" />
 
 </RelativeLayout>

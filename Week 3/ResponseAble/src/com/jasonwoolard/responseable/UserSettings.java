@@ -1,13 +1,17 @@
 package com.jasonwoolard.responseable;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.Toast;
 
 public class UserSettings extends Activity implements OnClickListener {
 
@@ -15,6 +19,7 @@ public class UserSettings extends Activity implements OnClickListener {
 	EditText userName;
 	Switch userGender;
 	Button saveSettings;
+	Context context;
 	
 	public static String userData = "UserSavedData";
 	SharedPreferences sharedPref;
@@ -24,9 +29,10 @@ public class UserSettings extends Activity implements OnClickListener {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.user_settings);
+		context = this;
 		// Initializing all User Interface Elements to be used throughout the Activity
 		initializeUIElements();
-		
+		// Obtaining Shared Preferences Data
 		sharedPref = getSharedPreferences(userData, 0);
 		String savedWeight = sharedPref.getString("weight", "");
 		userWeight.setText(savedWeight);
@@ -76,7 +82,13 @@ public class UserSettings extends Activity implements OnClickListener {
 			
 			// Committing / Saving out data
 			e.commit();
+		
+    		// Dismiss the current activity
+			finish();
 			
+			// Alert the user via Toast that the settings have been successfully saved
+			Toast.makeText(getApplicationContext(), "Settings Successfully Saved!",
+					   Toast.LENGTH_LONG).show();
 			break;
 		}
 	}

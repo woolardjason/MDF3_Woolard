@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends Activity implements OnClickListener{
 	SharedPreferences sharedPref;
@@ -31,22 +32,43 @@ public class MainActivity extends Activity implements OnClickListener{
 	Button calculateBAC;
 	EditText hoursSinceFirstConsumption;
 	Context context;
+	TextView results;
+	TextView welcomeMsg;
+	String savedName = "";
+	TextView resultsText;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
-		sharedPref = getSharedPreferences(UserSettings.userData, 0);
-		String savedName = sharedPref.getString("name", "");
 		context = this;
+		// Initializing UI Elements to be used from XML file
+		initializeUIElements();
+		// Obtaining Shared Preferences Saved Data
+		sharedPref = getSharedPreferences(UserSettings.userData, 0);
+		// Setting the welcome message depending if there is a name saved in user settings.
+		savedName = sharedPref.getString("name", "");
+		if (savedName.equals("") || savedName == null)
+		{
+			welcomeMsg.setText("Welcome to ResponseAble, Androids hottest Blood Alcohol Calculator!");
+		}
+		else
+		{
+			Log.i("Saved Name", savedName); 
+			welcomeMsg.setText("Welcome back " + savedName + "!");
+		}
+	}
+
+	public void initializeUIElements() {
 		beersConsumed = (EditText) findViewById(R.id.fieldBeers);
 		hoursSinceFirstConsumption = (EditText) findViewById(R.id.fieldHours);
 		wineGlassesConsumed = (EditText) findViewById(R.id.fieldWineGlasses);
 		shotsConsumed = (EditText) findViewById(R.id.fieldShots);
-		calculateBAC = (Button) findViewById(R.id.button1);
+		calculateBAC = (Button) findViewById(R.id.calculateBACBtn);
 		calculateBAC.setOnClickListener(this);
-
+		welcomeMsg = (TextView) findViewById(R.id.textWelcomeMsg);
+		results = (TextView) findViewById(R.id.textResults);
+		resultsText = (TextView) findViewById(R.id.textResultsAsText);
 	}
 
 	@Override
@@ -135,9 +157,11 @@ public class MainActivity extends Activity implements OnClickListener{
 
 
 			double result = dividedByWeight - accountForHours;
-
+			convertBACPercentageToText(result);
 			String resultString = String.valueOf(result);
 			Log.i("MainActivity", resultString);
+			results.setText(resultString);
+			
 		}
 	}
 
@@ -145,10 +169,26 @@ public class MainActivity extends Activity implements OnClickListener{
 	public void onClick(View v) {
 		switch (v.getId())
 		{
-		case R.id.button1:
+		case R.id.calculateBACBtn:
 			calculateBAC();
 			break;
 		}
 
+	}
+	public void convertBACPercentageToText(double percentage)
+	{
+		if (percentage >= 0.08)
+		{
+			resultsText.setText("Dude you're drunk DON'T drive, but relax you're able to be responsible... after all think about (insert image here).");
+		}
+		else if (percentage  >= 0.04 && percentage <= 0.079)
+		{
+			resultsText.setText("You're possibly impaired, but will pass a breathilizer test in the US. We recommend you to NOT drive.");
+
+		} 
+		else if (percentage <= 0.039)
+		{
+			resultsText.setText("You're good to go! However if you feel weird or even slightly visually impaired, DO NOT DRIVE!");
+		}
 	}
 }

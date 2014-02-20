@@ -6,5 +6,12 @@
     <string name="hello_world">Hello world!</string>
     <string name="error_weight_title">Whoops!</string>
     <string name="error_weight_msg">It appears you have forgot to enter your weight in the Settings tab, click the Icon above in the Action bar!</string>
+    <string name="label_drinks">Drinks:</string>
+    <string name="label_beers">Beers (12oz. @  5%)</string>
+    <string name="label_shots">Shots (Standard = 40% Alch)</string>
+    <string name="label_wine">Wine (glasses)</string>
+    <string name="label_results_header">Your Calculated BAC %:</string>
+    <string name="button_calc_text">Calculate BAC*</string>
+    <string name="label_hours">Time since first drink: (in hours)</string>
     
 </resources>

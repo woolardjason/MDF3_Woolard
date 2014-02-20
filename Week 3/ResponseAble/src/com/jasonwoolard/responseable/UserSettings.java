@@ -33,6 +33,17 @@ public class UserSettings extends Activity implements OnClickListener {
 		String savedName = sharedPref.getString("name", "");
 		userName.setText(savedName);
 		
+		Boolean savedGender = sharedPref.getBoolean("gender", true);
+		if (savedGender == true)
+		{
+			userGender.setChecked(true);
+		}
+		else
+		{
+			userGender.setChecked(false);
+		}
+		
+		
 	}
 	// User Interface Element method to initialize all UI elements from XML
 	private void initializeUIElements() 
@@ -60,12 +71,13 @@ public class UserSettings extends Activity implements OnClickListener {
 			String usersName = userName.getText().toString();
 			e.putString("name", usersName);
 			
+			Boolean isMale = userGender.isChecked();
+			e.putBoolean("gender", isMale);
+			
 			// Committing / Saving out data
 			e.commit();
 			
 			break;
 		}
-		
 	}
-
 }

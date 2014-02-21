@@ -36,7 +36,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	TextView welcomeMsg;
 	String savedName = "";
 	TextView resultsText;
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -57,6 +57,7 @@ public class MainActivity extends Activity implements OnClickListener{
 			Log.i("Saved Name", savedName); 
 			welcomeMsg.setText("Welcome back " + savedName + "!");
 		}
+
 	}
 
 	public void initializeUIElements() {
@@ -159,6 +160,11 @@ public class MainActivity extends Activity implements OnClickListener{
 			double result = dividedByWeight - accountForHours;
 			convertBACPercentageToText(result);
 			String resultString = String.valueOf(result);
+			// Referencing string preference editor
+			SharedPreferences.Editor e = sharedPref.edit();
+			e.putString("bac", resultString);
+			// Committing / Saving out data
+			e.commit();
 			Log.i("MainActivity", resultString);
 			results.setText(resultString);
 			

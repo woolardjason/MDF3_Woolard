@@ -6,25 +6,37 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#BBB"
     tools:context=".MainActivity" >
 
     <TextView
         android:id="@+id/textWelcomeMsg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingBottom="10sp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:text=""
-        android:textSize="16sp" />
-
-    <TextView
-        android:id="@+id/textHeader"
-        android:layout_width="wrap_content"
+        android:textSize="18sp" />
+	<TextView
+        android:id="@+id/textPreHeader"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textWelcomeMsg"
         android:layout_below="@+id/textWelcomeMsg"
-        android:text="Every 45 minutes, someone in the United States is killed from an alcohol-related automobile accident. Don&apos;t be the next casualty."
+        android:text="@string/did_you_know_header"
+        android:textSize="12sp" 
+        android:textStyle="bold"
+        android:background="#EEE"/>
+    <TextView
+        android:id="@+id/textHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textWelcomeMsg"
+        android:layout_below="@+id/textPreHeader"
+        android:text="@string/did_you_know_text"
+        android:background="#DDD"
         android:textSize="10sp" />
 
     <TextView
@@ -49,7 +61,7 @@
 
     <EditText
         android:id="@+id/fieldBeers"
-        android:layout_width="30sp"
+        android:layout_width="40sp"
         android:layout_height="30sp"
         android:layout_alignBottom="@+id/textBeers"
         android:layout_alignRight="@+id/textHeader"
@@ -71,7 +83,7 @@
 
     <EditText
         android:id="@+id/fieldWineGlasses"
-        android:layout_width="30sp"
+        android:layout_width="40sp"
         android:layout_height="30sp"
         android:layout_alignBottom="@+id/textWine"
         android:layout_alignRight="@+id/fieldBeers"
@@ -94,8 +106,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/calculateBACBtn"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="14dp"
-        android:text="For your convienence, use the settings tab above to enter your info which will auto-save for you!" />
+        android:layout_marginTop="10dp"
+        android:textSize="10sp"
+        android:text="*BAC = Blood Alcohol Percentage" />
 
     <TextView
         android:id="@+id/textHours"
@@ -103,13 +116,13 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textShots"
         android:layout_below="@+id/textShots"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="20dp"
         android:text="@string/label_hours"
         android:textSize="12sp" />
 
     <EditText
         android:id="@+id/fieldHours"
-        android:layout_width="30sp"
+        android:layout_width="40sp"
         android:layout_height="30sp"
         android:layout_above="@+id/calculateBACBtn"
         android:layout_alignRight="@+id/fieldShots"
@@ -127,7 +140,7 @@
 
     <EditText
         android:id="@+id/fieldShots"
-        android:layout_width="30sp"
+        android:layout_width="40sp"
         android:layout_height="30sp"
         android:layout_above="@+id/textHours"
         android:layout_alignLeft="@+id/fieldBeers"
@@ -163,6 +176,6 @@
         android:layout_centerHorizontal="true"
         android:background="#000"
         android:textColor="#FFF"
-        android:textSize="18sp" />
+        android:textSize="16sp" />
 
 </RelativeLayout>

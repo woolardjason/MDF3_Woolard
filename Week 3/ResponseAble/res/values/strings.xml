@@ -7,11 +7,14 @@
     <string name="error_weight_title">Whoops!</string>
     <string name="error_weight_msg">It appears you have forgot to enter your weight in the Settings tab, click the Icon above in the Action bar!</string>
     <string name="label_drinks">Drinks:</string>
-    <string name="label_beers">Beers (12oz. @  5%)</string>
-    <string name="label_shots">Shots (Standard = 40% Alch)</string>
-    <string name="label_wine">Wine (glasses)</string>
+    <string name="label_beers">Beers (12oz. @  5% Alch.)</string>
+    <string name="label_shots">Shots (1.25oz @ 40% Alch.)</string>
+    <string name="label_wine">Wine (5oz @ 12% Alch.)</string>
     <string name="label_results_header">Your Calculated BAC %:</string>
     <string name="button_calc_text">Calculate BAC*</string>
     <string name="label_hours">Time since first drink: (in hours)</string>
+    <string name="current_bac">CURRENT BAC %</string>
+    <string name="did_you_know_text">Every 45 minutes, someone in the United States is killed from an alcohol-related automobile accident. Do not be the next casualty.</string>
+    <string name="did_you_know_header">Did You Know?</string>
     
 </resources>

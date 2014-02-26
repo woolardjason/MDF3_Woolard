@@ -185,7 +185,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	{
 		if (percentage >= 0.08)
 		{
-			resultsText.setText("Dude you're drunk DON'T drive, but relax you're able to be responsible... after all think about (insert image here).");
+			resultsText.setText("Dude you're drunk DON'T drive, but relax you're able to be responsible... after all think about YOUR LIFE!");
 		}
 		else if (percentage  >= 0.04 && percentage <= 0.079)
 		{

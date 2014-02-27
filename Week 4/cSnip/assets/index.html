@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cSnip Web App</title>
+	<link rel="stylesheet" href="jquery.mobile-1.4.1.min.css" />    
+</head>
+<body>
+	<div data-role="page" data-theme="b">
+		<div data-role="header">
+			<a href="#" data-icon="back" onclick="androidBack();" class="ui-btn-left">Back</a>
+			<span class="ui-title" />
+		</div>
+		<div data-role="content">	
+			<form action="#" method="post" name="newsnippetform" id="newsnippetform">
+			<div id="snippetinfo" data-role="fieldcontain">
+			<fieldset>
+				<legend><h4 id="formtitle">New Snippet Info</h4></legend>
+				<div data-role="fieldcontain">
+					<label for="title">Snippet Title:</label>
+						<input type="text" data-clear-btn="true" name="title" id="title" placeholder="ex. Login Controller Logic" class="required" />
+				
+						<label for="code">Snippet Code:</label>
+						<input type="text" data-clear-btn="true" name="code" id="code" placeholder="ex. if (user.isVip == true) { };" class="required" />
+				
+						<label for="language">Code Language:</label>
+						<input type="text" data-clear-btn="true" name="language" placeholder="ex. Objective-C" id="language" class="required" />
+				</div>
+			</fieldset>
+		</div>
+		<div data-role="fieldcontain">
+			<div id="submit-reset-buttons">
+				<input type="submit" id="submit" value="Save" data-theme="a" onclick="passAndroidData();" />		
+			</div>
+		</div>
+		</form>
+		</div>
+	</div>
+	<script src="jquery-1.9.1.min.js"></script>
+	<script src="jquery.mobile-1.4.1.min.js"></script>
+	<script src="main.js"></script>
+</body>
+</html>

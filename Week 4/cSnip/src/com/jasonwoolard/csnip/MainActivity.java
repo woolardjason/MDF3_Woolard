@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -28,11 +29,22 @@ public class MainActivity extends Activity {
 	SimpleAdapter mAdapter;
 	private List<ParseObject> mSnippets;
 	
-	private class ObtainParseData extends AsyncTask<Void, Void, Void> {
+	private class ObtainParseData extends AsyncTask<Void, Integer, Void> {
+		ProgressDialog mProgress;
 		protected Void doInBackground(Void... params) {
 			ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Snippets");
 			query.orderByDescending("createdAt");
-
+			for (int i = 0; i < 20; i++)
+			{
+				publishProgress(5);
+				try {
+					Thread.sleep(45);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			mProgress.dismiss();
 			try {
 				mSnippets = query.find();
 			} catch (ParseException e) {
@@ -43,18 +55,26 @@ public class MainActivity extends Activity {
 
 		@Override
 		protected void onPreExecute() {
+			mProgress = new ProgressDialog(MainActivity.this);
+			mProgress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+			mProgress.setMax(100);
+	        mProgress.setTitle("Loading...");
+	        mProgress.setMessage("Please wait while we fetch your saved snippets!");
+			mProgress.show();
 		//	MainActivity.this.progressDialog = ProgressDialog.show(MainActivity.this, "",
 		//			"Loading, Please Wait...", true);
 			super.onPreExecute();
+
 		}
 
 		@Override
-		protected void onProgressUpdate(Void... values) {
-			super.onProgressUpdate(values);
+		protected void onProgressUpdate(Integer... values) {
+			mProgress.incrementProgressBy(values[0]);
 		}
 
 		@Override
 		protected void onPostExecute(Void result) {
+
 			/* Putting the List of Snippets into a List View, by first creating the adapter, obtaining each Parse Object's info 
 			   and then finally setting the adapter of ListView after info is set. */
 			ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this,

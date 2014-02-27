@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">cSnip</string>
+    <string name="title_activity_add_snippet">AddSnippetActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="add_new_snippet">Add New Snippet</string>
+
 </resources>

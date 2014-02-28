@@ -1,3 +1,12 @@
+/*
+ * Project		cSnip
+ * 
+ * Package		com.jasonwoolard.csnip
+ * 
+ * @author		Jason Woolard
+ * 
+ * Date			Feb 27, 2014
+ */
 package com.jasonwoolard.csnip;
 
 import android.annotation.SuppressLint;

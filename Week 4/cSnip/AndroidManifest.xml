@@ -28,6 +28,10 @@
             android:name="com.jasonwoolard.csnip.AddSnippetActivity"
             android:label="@string/title_activity_add_snippet" >
         </activity>
+         <activity
+            android:name="com.jasonwoolard.csnip.SnippetDetailActivity"
+            android:label="Snippet Details" >
+        </activity>
     </application>
 
 </manifest>

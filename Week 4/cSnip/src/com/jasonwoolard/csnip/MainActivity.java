@@ -1,5 +1,7 @@
 package com.jasonwoolard.csnip;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,11 +12,14 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.AdapterView.OnItemClickListener;
 
 import com.jasonwoolard.csnipapp.R;
+import com.parse.FindCallback;
 import com.parse.Parse;
 import com.parse.ParseACL;
 import com.parse.ParseAnalytics;
@@ -27,13 +32,11 @@ public class MainActivity extends Activity {
 	ListView mSnippetList;
 	List<Map<String, String>> mData;
 	SimpleAdapter mAdapter;
-	private List<ParseObject> mSnippets;
-	
+	ProgressDialog mProgress;
+	ParseUser mUser;
+
 	private class ObtainParseData extends AsyncTask<Void, Integer, Void> {
-		ProgressDialog mProgress;
 		protected Void doInBackground(Void... params) {
-			ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Snippets");
-			query.orderByDescending("createdAt");
 			for (int i = 0; i < 20; i++)
 			{
 				publishProgress(5);
@@ -44,12 +47,45 @@ public class MainActivity extends Activity {
 					e.printStackTrace();
 				}
 			}
-			mProgress.dismiss();
-			try {
-				mSnippets = query.find();
-			} catch (ParseException e) {
-
-			}
+			ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Snippets");
+			query.orderByDescending("createdAt");
+			query.whereEqualTo("postedBy", mUser);
+			query.findInBackground(new FindCallback<ParseObject>() 
+			{
+				@Override
+				public void done(List<ParseObject> objects, ParseException e) 
+				{
+					if (e == null) 
+					{
+						if (objects.toArray().length > 0)
+						{
+							mData = new ArrayList<Map<String, String>>();
+						    
+							for(int i=0;i<objects.toArray().length;i++){							
+								ParseObject snippets = objects.get(i);
+								Map<String, String> map = new HashMap<String, String>(2);
+								map.put("title", snippets.getString("title"));
+								map.put("code", snippets.getString("code"));
+								map.put("language", snippets.getString("language"));
+								map.put("oid", snippets.getObjectId());
+								mData.add(map);
+								
+							}
+							/* Putting the List of Snippets into a List View, by first creating the adapter, obtaining each Parse Object's info 
+							   and then finally setting the adapter of ListView after info is set. */
+							SimpleAdapter adapter = new SimpleAdapter(getApplicationContext(), mData, android.R.layout.simple_list_item_2, 
+													new String[] {"title", "language", "code", "oid"},
+													new int[] {android.R.id.text1, android.R.id.text2});
+							
+							mSnippetList.setAdapter(adapter);
+						}
+					}
+					else
+					{
+						
+					}
+				}
+			});
 			return null;
 		}
 
@@ -58,11 +94,11 @@ public class MainActivity extends Activity {
 			mProgress = new ProgressDialog(MainActivity.this);
 			mProgress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 			mProgress.setMax(100);
-	        mProgress.setTitle("Loading...");
-	        mProgress.setMessage("Please wait while we fetch your saved snippets!");
-			mProgress.show();
-		//	MainActivity.this.progressDialog = ProgressDialog.show(MainActivity.this, "",
-		//			"Loading, Please Wait...", true);
+			mProgress.setTitle("Loading...");
+			mProgress.setMessage("Please wait while we fetch your latest saved snippets!");
+			mProgress.show(); 
+			//	MainActivity.this.progressDialog = ProgressDialog.show(MainActivity.this, "",
+			//			"Loading, Please Wait...", true);
 			super.onPreExecute();
 
 		}
@@ -75,21 +111,13 @@ public class MainActivity extends Activity {
 		@Override
 		protected void onPostExecute(Void result) {
 
-			/* Putting the List of Snippets into a List View, by first creating the adapter, obtaining each Parse Object's info 
-			   and then finally setting the adapter of ListView after info is set. */
-			ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this,
-					R.layout.list_row);
-            if (mSnippets != null) {
-                for (ParseObject mSnippet : mSnippets) {
-                	String title = (String) mSnippet.get("title");
-                    adapter.add(title);
-                }
-            }
-			mSnippetList.setAdapter(adapter);
-		//	MainActivity.this.progressDialog.dismiss();
+			mProgress.dismiss();
+
+
 			
 		}
 	}
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -101,23 +129,38 @@ public class MainActivity extends Activity {
 
 		ParseAnalytics.trackAppOpened(getIntent());
 		ParseUser.enableAutomaticUser();
+		mUser = ParseUser.getCurrentUser();
+		
 		ParseACL defaultACL = new ParseACL();
 		defaultACL.setPublicReadAccess(true);
 		ParseACL.setDefaultACL(defaultACL, true);
-		
+
 		mSnippetList = (ListView) findViewById(R.id.listView1);
+		mSnippetList.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View v, int pos, long id) {
+				@SuppressWarnings("unchecked")
+				HashMap<String, String> hm = (HashMap<String, String>)mSnippetList.getItemAtPosition(pos);
+				
+				Intent intent = new Intent(getApplicationContext(), SnippetDetailActivity.class);
+				
+				intent.putExtra("title", hm.get("title"));
+				intent.putExtra("code", hm.get("code"));
+				intent.putExtra("language", hm.get("language"));
+				
+				startActivity(intent);
+			}
+		});
 	}
-	
+
 	@Override
 	protected void onResume() {
 		super.onResume();
 		// Executing Async Task to pull in parse db data
 		new ObtainParseData().execute();
 	}
-	
-	/* (non-Javadoc)
-	 * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
-	 */
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// TODO Auto-generated method stub

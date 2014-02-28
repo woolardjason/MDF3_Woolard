@@ -3,6 +3,7 @@ package com.jasonwoolard.csnip;
 import com.jasonwoolard.csnipapp.R;
 import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import android.os.Bundle;
@@ -19,12 +20,15 @@ import android.widget.Toast;
 
 public class AddSnippetActivity extends Activity {
 	WebView webView;
+	ParseUser user;
+	
 	@SuppressLint({ "SetJavaScriptEnabled", "JavascriptInterface" })
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_snippet);
-		
+		user = ParseUser.getCurrentUser();
+
 		webView = (WebView) findViewById(R.id.webView1); 
 		webView.setWebViewClient(new WebViewClient()); 
 		webView.addJavascriptInterface(new WebAppInterface(this), "Android");
@@ -82,6 +86,7 @@ public class AddSnippetActivity extends Activity {
 				snippet.put("title", title);
 				snippet.put("code", code);
 				snippet.put("language", language);
+				snippet.put("postedBy", user);
 				// Saving snippit to the backend
 				snippet.saveInBackground(new SaveCallback()
 				{

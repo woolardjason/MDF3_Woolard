@@ -1,15 +1,12 @@
 package com.jasonwoolard.csnip;
 
-import com.jasonwoolard.csnipapp.R;
-import com.parse.ParseException;
-import com.parse.ParseObject;
-import com.parse.ParseUser;
-import com.parse.SaveCallback;
-
-import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.webkit.JavascriptInterface;
@@ -18,9 +15,17 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
+import com.jasonwoolard.csnipapp.R;
+import com.parse.ParseException;
+import com.parse.ParseGeoPoint;
+import com.parse.ParseObject;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
+
 public class AddSnippetActivity extends Activity {
 	WebView webView;
 	ParseUser user;
+	LocationManager lm;
 	
 	@SuppressLint({ "SetJavaScriptEnabled", "JavascriptInterface" })
 	@Override
@@ -98,6 +103,10 @@ public class AddSnippetActivity extends Activity {
 						{
 							finish();
 							Toast.makeText(getApplicationContext(), "Code Snippet Saved Successfully!", Toast.LENGTH_LONG).show();
+							// Recording users last location to be used in local connections feature!
+							lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+							LocationListener ll = new myLocationListener();
+							lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, ll);
 						} 
 						else 
 						{
@@ -112,6 +121,44 @@ public class AddSnippetActivity extends Activity {
 		public void goBack()
 		{
 			finish();
+		}
+			
+	}
+	public class myLocationListener implements LocationListener {
+
+		@Override
+		public void onLocationChanged(Location location) {
+			// TODO Auto-generated method stub
+			if (location != null)
+			{
+				double mLat = location.getLatitude();
+				double mLng = location.getLongitude();
+				Log.i("Geo Test: ", Double.toString(mLng) + Double.toString(mLat));
+				ParseGeoPoint point = new ParseGeoPoint(mLat, mLng);
+				user.put("lastKnownLocation", point);
+				user.saveInBackground();
+				
+	            lm.removeUpdates(this);
+			}
+		}
+
+		@Override
+		public void onProviderDisabled(String provider) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void onProviderEnabled(String provider) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void onStatusChanged(String provider, int status,
+				Bundle extras) {
+			// TODO Auto-generated method stub
+			
 		}
 		
 	}

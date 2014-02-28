@@ -6,5 +6,6 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="add_new_snippet">Add New Snippet</string>
-
+    <string name="share_snippet">Share Snippet</string>
+	<string name="share_title">Share Snippet How?</string>
 </resources>

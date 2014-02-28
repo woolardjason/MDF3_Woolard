@@ -110,11 +110,8 @@ public class MainActivity extends Activity {
 
 		@Override
 		protected void onPostExecute(Void result) {
-
 			mProgress.dismiss();
 
-
-			
 		}
 	}
 
@@ -141,14 +138,15 @@ public class MainActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View v, int pos, long id) {
 				@SuppressWarnings("unchecked")
-				HashMap<String, String> hm = (HashMap<String, String>)mSnippetList.getItemAtPosition(pos);
+				HashMap<String, String> hm = (HashMap<String, String>) mSnippetList.getItemAtPosition(pos);
 				
 				Intent intent = new Intent(getApplicationContext(), SnippetDetailActivity.class);
 				
 				intent.putExtra("title", hm.get("title"));
 				intent.putExtra("code", hm.get("code"));
 				intent.putExtra("language", hm.get("language"));
-				
+				intent.putExtra("oid", hm.get("oid"));
+
 				startActivity(intent);
 			}
 		});
